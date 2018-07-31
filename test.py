@@ -47,6 +47,7 @@ for i in range(height):
 
 colours = [(0,0,0,1),(0,1,0,1),(1,0,0,1),(1,1,1,1)]
 colour = [0]
+algo = [0]
 
 #change node colour
 def paint(x,y,self):
@@ -76,7 +77,7 @@ class Touch(Widget):
         paint(x,y,self)
 
 
-class Select(BoxLayout):
+class ToolBar(BoxLayout):
     def spinner_clicked(self,value):
         if value=='Wall':
             colour[0] = 0
@@ -84,15 +85,19 @@ class Select(BoxLayout):
             colour[0] = 1
         elif value=='Target':
             colour[0] = 2
-        else:
+        elif value=='Blank':
             colour[0] = 3
+    def spinner_clicked2(self,value):
+        if value=='BFS':
+            algo[0] = 0
+        else:
+            algo[0] = 1
 
-
-class mainApp(App):
+class testApp(App):
     def build(self):
         parent = Widget()
         layout = Touch()
-        options = Select()
+        tools = ToolBar()
         with layout.canvas:
             Color(.501,.501,.501,1)
             Rectangle(pos=(0,0),size=(900,600))
@@ -101,11 +106,11 @@ class mainApp(App):
                 for j in range(50):
                     Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
         parent.add_widget(layout)
-        parent.add_widget(options)
+        parent.add_widget(tools)
         return parent
 
 
-glApp = mainApp()
+glApp = testApp()
 
 if __name__=='__main__':
     glApp.run()
