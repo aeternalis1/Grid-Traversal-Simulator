@@ -2,26 +2,41 @@ import kivy
 kivy.require('1.10.0')
 
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.image import Image
-from kivy.uix.floatlayout import FloatLayout
-from kivy.config import Config
-from kivy.graphics import *
 from kivy.uix.widget import Widget
+from kivy.uix.checkbox import CheckBox
+from kivy.uix.gridlayout import GridLayout
+from kivy.properties import ObjectProperty
+from kivy.uix.behaviors import ToggleButtonBehavior
+
+li = [0,1,0,0]
 
 
-class TouchInput(Widget):
-    def on_touch_down(self, touch):
-        print (touch.x,touch.y)
-    def on_touch_move(self, touch):
-        print (touch)
+class Select(GridLayout):
+    check1 = ObjectProperty(True)
+    check2 = ObjectProperty(False)
+    check3 = ObjectProperty(False)
+    check4 = ObjectProperty(False)
+    def checked1(self,instance,value):
+        if value:
+            print ("CHECK1")
+    def checked2(self,instance,value):
+        if value:
+            print ("CHECK2")
+    def checked3(self,instance,value):
+        if value:
+            print ("CHECK3")
+    def checked4(self,instance,value):
+        if value:
+            print ("CHECK4")
+
 
 
 class mainApp(App):
     def build(self):
-        return TouchInput()
+        parent = Widget()
+        layout = Select()
+        parent.add_widget(layout)
+        return parent
 
 glApp = mainApp()
 

@@ -9,18 +9,21 @@ from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
 from kivy.config import Config
 from kivy.graphics import *
+from kivy.uix.widget import Widget
+
 
 Config.set('input','mouse','mouse,multitouch_on_demand')
 Config.set('graphics', 'width', '900')
 Config.set('graphics', 'height', '600')
-Config.set('graphics','resizable',False)
 
 
 class node:
-    def __init__(self,x,y):
+    def __init__(self,x,y,hori,vert):
         self.x = x
         self.y = y
-        self.wall = 0
+        self.hori = hori
+        self.vert = vert
+        self.col = 0
 
 #width and height of window allocated to grid (rest for commands)
 w_width = 900
@@ -30,24 +33,61 @@ w_height = 600-(600/10)
 width = 50
 height = 30
 
-grid = [[] for x in range(height)]
+grid = [[None for x in range(width)] for x in range(height)]
 
 #scale block sizes to fit window
-sz = 18
+hori = w_width//width
+vert = w_height//height
 
 for i in range(height):
     for j in range(width):
-        grid[i].append(node(j*sz,i*sz))
+        grid[i][j] = (node(j*hori,i*vert,hori-1,vert-1))
+
+
+colours = [(1,1,1,1),(0,0,0,1)]
+
+#change node colour
+def paint(x,y,colour,self):
+    hori = grid[0][0].hori
+    vert = grid[0][0].vert
+    gridx = int(x//(hori+1))
+    gridy = int(y//(vert+1))
+    if gridy>=(len(grid)) or gridx >= len(grid[0]) or gridy < 0 or gridx < 0 or grid[gridy][gridx].col==colour:
+        return
+    with self.canvas:
+        grid[gridy][gridx].col = colour
+        Color(*colours[colour])
+        Rectangle(pos=(grid[gridy][gridx].x, grid[gridy][gridx].y), size=(hori, vert))
+    return
+
+
+class Touch(Widget):
+
+    def on_touch_down(self, touch):
+        x = touch.x
+        y = touch.y
+        paint(x,y,1,self)
+
+    def on_touch_move(self, touch):
+        x = touch.x
+        y = touch.y
+        paint(x,y,1,self)
 
 
 class mainApp(App):
     def build(self):
-        layout = FloatLayout()
+        parent = Widget()
+        layout = Touch()
         with layout.canvas:
-            for i in range(height):
-                for j in range(width):
-                    Rectangle(pos=(grid[i][j].x,grid[i][j].y),size=(sz-1,sz-1))
-        return layout
+            Color(.501,.501,.501,1)
+            Rectangle(pos=(0,0),size=(900,600))
+            Color(1,1,1,1)
+            for i in range(30):
+                for j in range(50):
+                    Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
+        parent.add_widget(layout)
+        return parent
+
 
 glApp = mainApp()
 

@@ -7,6 +7,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.graphics import *
 from kivy.uix.widget import Widget
@@ -15,11 +16,6 @@ from kivy.uix.widget import Widget
 Config.set('input','mouse','mouse,multitouch_on_demand')
 Config.set('graphics', 'width', '900')
 Config.set('graphics', 'height', '600')
-
-
-class TouchInput(Widget):
-    def on_touch_down(self, touch):
-        print (touch)
 
 
 class node:
@@ -79,10 +75,16 @@ class Touch(Widget):
         paint(x,y,1,self)
 
 
+class Select(BoxLayout):
+    def spinner_clicked(self,value):
+        print (value)
+
+
 class mainApp(App):
     def build(self):
         parent = Widget()
         layout = Touch()
+        options = Select()
         with layout.canvas:
             Color(.501,.501,.501,1)
             Rectangle(pos=(0,0),size=(900,600))
@@ -91,6 +93,7 @@ class mainApp(App):
                 for j in range(50):
                     Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
         parent.add_widget(layout)
+        parent.add_widget(options)
         return parent
 
 
