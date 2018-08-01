@@ -11,6 +11,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.graphics import *
 from kivy.uix.widget import Widget
+from random import randint
 
 
 Config.set('input','mouse','mouse,multitouch_on_demand')
@@ -69,15 +70,16 @@ class Touch(Widget):
     def on_touch_down(self, touch):
         x = touch.x
         y = touch.y
-        paint(x,y,self)
+        paint(x,y,self.parent)
 
     def on_touch_move(self, touch):
         x = touch.x
         y = touch.y
-        paint(x,y,self)
+        paint(x,y,self.parent)
 
 
 class ToolBar(BoxLayout):
+
     def spinner_clicked(self,value):
         if value=='Wall':
             colour[0] = 0
@@ -87,30 +89,62 @@ class ToolBar(BoxLayout):
             colour[0] = 2
         elif value=='Blank':
             colour[0] = 3
+
     def spinner_clicked2(self,value):
         if value=='BFS':
             algo[0] = 0
         else:
             algo[0] = 1
 
+    def randomize(self):
+        for i in grid:
+            for j in i:
+                if randint(1,4)==1:
+                    j.col = 0
+                else:
+                    j.col = 3
+                with self.parent.canvas:
+                    Color(*colours[j.col])
+                    Rectangle(pos=(j.x, j.y), size=(j.hori, j.vert))
+        y,x = randint(0,len(grid)-1),randint(0,len(grid[0])-1)
+        a,b = randint(0,len(grid)-1),randint(0,len(grid[0])-1)
+        while a==y and b==x:
+            a, b = randint(0, len(grid) - 1), randint(0, len(grid[0]) - 1)
+        grid[y][x].col = 1
+        grid[a][b].col = 2
+        with self.parent.canvas:
+            Color(*colours[1])
+            Rectangle(pos=(grid[y][x].x, grid[y][x].y), size=(grid[y][x].hori, grid[y][x].vert))
+            Color(*colours[2])
+            Rectangle(pos=(grid[a][b].x, grid[a][b].y), size=(grid[a][b].hori, grid[a][b].vert))
+
+    def clear(self):
+        for i in grid:
+            for j in i:
+                j.col = 3
+                with self.parent.canvas:
+                    Color(*colours[j.col])
+                    Rectangle(pos=(j.x, j.y), size=(j.hori, j.vert))
+
+
 class testApp(App):
     def build(self):
         parent = Widget()
         layout = Touch()
         tools = ToolBar()
-        with layout.canvas:
+        with parent.canvas:
             Color(.501,.501,.501,1)
             Rectangle(pos=(0,0),size=(900,600))
             Color(1,1,1,1)
             for i in range(30):
                 for j in range(50):
                     Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
-        parent.add_widget(layout)
         parent.add_widget(tools)
+        parent.add_widget(layout)
         return parent
 
 
-glApp = testApp()
+gridsim = testApp()
 
 if __name__=='__main__':
-    glApp.run()
+    gridsim.run()

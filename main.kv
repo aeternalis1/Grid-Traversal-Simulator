@@ -11,22 +11,34 @@ ToolBar:
     Label:
         text: "Currently\nplacing:"
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
     Spinner:
         text: "Wall"
         values: ["Wall","Source","Target","Blank"]
         id: spinner_id
         on_text: root.spinner_clicked(spinner_id.text)
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
     Label:
         text: "Current\nalgorithm:"
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
     Spinner:
         text: "BFS"
         values: ["BFS","DFS"]
         id: spinner_id2
         on_text: root.spinner_clicked2(spinner_id2.text)
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
+    Button:
+        text: "Randomize Grid"
+        on_press: root.randomize()
+        height: '35dp'
+        size_hint: None,None
+        width: '120dp'
+    Button:
+        text: "Clear Grid"
+        on_press: root.clear()
+        height: '35dp'
+        size_hint: None,None
+        width: '100dp'
