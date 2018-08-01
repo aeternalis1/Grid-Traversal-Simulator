@@ -2,6 +2,11 @@ import kivy
 kivy.require('1.10.0')
 
 from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
+from kivy.uix.image import Image
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.graphics import *
@@ -34,7 +39,7 @@ w_height = 600-(600/10)
 width = 50
 height = 30
 
-grid = [[node(0,0,0,0) for x in range(width)] for x in range(height)]
+grid = [[None for x in range(width)] for x in range(height)]
 checked = [[0 for x in range(width)] for x in range(height)]
 backtrack = [[[-1,-1] for x in range(width)] for x in range(height)]
 
@@ -52,8 +57,11 @@ colour = [0]
 moves = [[1,0],[0,1],[-1,0],[0,-1]]
 algo = [0]
 running = [0]
+#queue = [0 for x in range(width*height)]
 queue = []
-stack = []
+stack = [0 for x in range(width*height)]
+queueInd = [0,0]
+stackInd = [0]
 
 #change node colour
 def paint(x,y,self):
@@ -71,17 +79,22 @@ def paint(x,y,self):
 
 
 def resetGrid(self):
-    for i in grid:
-        for j in i:
-            with self.canvas:
+    self.canvas.clear()
+    self.canvas.children = [widget.canvas for widget in self.children]
+    with self.canvas:
+        Color(.501,.501,.501,1)
+        Rectangle(pos=(0,0),size=(900,540))
+        for i in grid:
+            for j in i:
                 Color(*colours[j.col])
                 Rectangle(pos=(j.x,j.y),size=(j.hori,j.vert))
 
 
 def runPath(self,*largs):
-    if not stack:
+    if stackInd[0]<0:
         return
-    y,x = stack.pop(-1)
+    y,x = stack[stackInd[0]]
+    stackInd[0] -= 1
     if grid[y][x].col != 1:
         with self.canvas:
             Color(0,0,1,1)
@@ -95,10 +108,10 @@ def bfsUpdate(self,*largs):
         if grid[y][x].col==2:
             while queue:
                 queue.pop(-1)
-            while stack:
-                stack.pop(-1)
+            stackInd[0] = -1
             while backtrack[y][x] != [-1, -1]:
-                stack.append(backtrack[y][x])
+                stackInd[0] += 1
+                stack[stackInd[0]] = backtrack[y][x]
                 y, x = backtrack[y][x]
             Clock.schedule_once(partial(runPath, self), 1.0 / 60.0)
             return
@@ -140,10 +153,10 @@ def dfsUpdate(self,*largs):
     if grid[y][x].col==2:
         while queue:
             queue.pop(-1)
-        while stack:
-            stack.pop(-1)
+        stackInd[0] = -1
         while backtrack[y][x] != [-1,-1]:
-            stack.append(backtrack[y][x])
+            stackInd[0] += 1
+            stack[stackInd[0]] = backtrack[y][x]
             y,x = backtrack[y][x]
         Clock.schedule_once(partial(runPath,self),1.0/60.0)
         return
@@ -226,6 +239,8 @@ class ToolBar(BoxLayout):
             running[0] = 0
             while queue:
                 queue.pop(-1)
+        resetGrid(self.parent)
+        print (self.parent)
         for i in grid:
             for j in i:
                 if randint(1,4)==1:
@@ -252,11 +267,12 @@ class ToolBar(BoxLayout):
             running[0] = 0
             while queue:
                 queue.pop(-1)
-        for i in grid:
-            for j in i:
-                j.col = 3
-                with self.parent.canvas:
-                    Color(*colours[j.col])
+        resetGrid(self.parent)
+        with self.parent.canvas:
+            Color(1,1,1,1)
+            for i in grid:
+                for j in i:
+                    j.col = 3
                     Rectangle(pos=(j.x, j.y), size=(j.hori, j.vert))
 
     def simulate(self):
@@ -273,15 +289,16 @@ class MainApp(App):
         parent = Widget()
         layout = Touch()
         tools = ToolBar()
-        with parent.canvas:
+        with layout.canvas:
             Color(.501,.501,.501,1)
-            Rectangle(pos=(0,0),size=(900,600))
+            Rectangle(pos=(0,0),size=(900,540))
+        with layout.canvas:
             Color(1,1,1,1)
             for i in range(30):
                 for j in range(50):
                     Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
-        parent.add_widget(tools)
         parent.add_widget(layout)
+        parent.add_widget(tools)
         return parent
 
 

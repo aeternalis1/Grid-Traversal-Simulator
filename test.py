@@ -80,6 +80,7 @@ def paint(x,y,self):
 
 def resetGrid(self):
     self.canvas.clear()
+    self.canvas.children = [widget.canvas for widget in self.children]
     with self.canvas:
         Color(.501,.501,.501,1)
         Rectangle(pos=(0,0),size=(900,540))
@@ -239,6 +240,7 @@ class ToolBar(BoxLayout):
             while queue:
                 queue.pop(-1)
         resetGrid(self.parent)
+        print (self.parent)
         for i in grid:
             for j in i:
                 if randint(1,4)==1:
@@ -295,8 +297,8 @@ class testApp(App):
             for i in range(30):
                 for j in range(50):
                     Rectangle(pos=(grid[i][j].x, grid[i][j].y), size=(grid[i][j].hori, grid[i][j].vert))
-        parent.add_widget(tools)
         parent.add_widget(layout)
+        parent.add_widget(tools)
         return parent
 
 

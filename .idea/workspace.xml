@@ -14,21 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4276">
-              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state relative-caret-position="399">
+              <caret line="304" column="19" lean-forward="true" selection-start-line="304" selection-start-column="19" selection-end-line="304" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="215" column="0" lean-forward="true" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+            <state relative-caret-position="155">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -37,7 +37,7 @@
       <file leaf-file-name="test.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-204">
               <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
               <folding />
             </state>
@@ -99,8 +99,8 @@
         <option value="$PROJECT_DIR$/test3.py" />
         <option value="$PROJECT_DIR$/test.kv" />
         <option value="$PROJECT_DIR$/main.kv" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -176,7 +176,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="customwidget.kv" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -271,8 +271,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test" />
-        <item index="1" class="java.lang.String" itemvalue="Python.main" />
+        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
         <item index="2" class="java.lang.String" itemvalue="Python.test3" />
         <item index="3" class="java.lang.String" itemvalue="Python.test2" />
         <item index="4" class="java.lang.String" itemvalue="Python.customwidget.kv" />
@@ -398,14 +398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4276">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -424,7 +416,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="-204">
           <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
@@ -432,8 +424,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="215" column="0" lean-forward="true" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+        <state relative-caret-position="155">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="304" column="19" lean-forward="true" selection-start-line="304" selection-start-column="19" selection-end-line="304" selection-end-column="19" />
           <folding />
         </state>
       </provider>
