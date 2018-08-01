@@ -20,6 +20,7 @@ from functools import partial
 Config.set('input','mouse','mouse,multitouch_on_demand')
 Config.set('graphics', 'width', '900')
 Config.set('graphics', 'height', '600')
+Config.set('graphics', 'resizable', False)
 
 
 class node:
@@ -78,9 +79,12 @@ def paint(x,y,self):
 
 
 def resetGrid(self):
-    for i in grid:
-        for j in i:
-            with self.canvas:
+    self.canvas.clear()
+    with self.canvas:
+        Color(.501,.501,.501,1)
+        Rectangle(pos=(0,0),size=(900,540))
+        for i in grid:
+            for j in i:
                 Color(*colours[j.col])
                 Rectangle(pos=(j.x,j.y),size=(j.hori,j.vert))
 
@@ -234,6 +238,7 @@ class ToolBar(BoxLayout):
             running[0] = 0
             while queue:
                 queue.pop(-1)
+        resetGrid(self.parent)
         for i in grid:
             for j in i:
                 if randint(1,4)==1:
@@ -260,6 +265,7 @@ class ToolBar(BoxLayout):
             running[0] = 0
             while queue:
                 queue.pop(-1)
+        resetGrid(self.parent)
         with self.parent.canvas:
             Color(1,1,1,1)
             for i in grid:
@@ -281,9 +287,10 @@ class testApp(App):
         parent = Widget()
         layout = Touch()
         tools = ToolBar()
-        with parent.canvas:
+        with layout.canvas:
             Color(.501,.501,.501,1)
-            Rectangle(pos=(0,0),size=(900,600))
+            Rectangle(pos=(0,0),size=(900,540))
+        with layout.canvas:
             Color(1,1,1,1)
             for i in range(30):
                 for j in range(50):

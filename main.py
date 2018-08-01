@@ -2,11 +2,6 @@ import kivy
 kivy.require('1.10.0')
 
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.image import Image
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.graphics import *
@@ -20,6 +15,7 @@ from functools import partial
 Config.set('input','mouse','mouse,multitouch_on_demand')
 Config.set('graphics', 'width', '900')
 Config.set('graphics', 'height', '600')
+Config.set('graphics', 'resizable', False)
 
 
 class node:
@@ -38,7 +34,7 @@ w_height = 600-(600/10)
 width = 50
 height = 30
 
-grid = [[None for x in range(width)] for x in range(height)]
+grid = [[node(0,0,0,0) for x in range(width)] for x in range(height)]
 checked = [[0 for x in range(width)] for x in range(height)]
 backtrack = [[[-1,-1] for x in range(width)] for x in range(height)]
 
@@ -83,7 +79,7 @@ def resetGrid(self):
 
 
 def runPath(self,*largs):
-    if stack==[]:
+    if not stack:
         return
     y,x = stack.pop(-1)
     if grid[y][x].col != 1:
