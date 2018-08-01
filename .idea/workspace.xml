@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12ef7017-ca37-4a8a-b6d3-8a35f36ca8c5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.kv" afterPath="$PROJECT_DIR$/test.kv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.kv" afterPath="$PROJECT_DIR$/main.kv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="116" column="31" lean-forward="false" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+            <state relative-caret-position="144">
+              <caret line="264" column="27" lean-forward="true" selection-start-line="264" selection-start-column="27" selection-end-line="264" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -27,18 +28,18 @@
       <file leaf-file-name="main.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+            <state relative-caret-position="473">
+              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="121" column="25" lean-forward="true" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
+            <state relative-caret-position="34">
+              <caret line="95" column="31" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="279" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -47,8 +48,8 @@
       <file leaf-file-name="test.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+            <state relative-caret-position="150">
+              <caret line="30" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -106,11 +107,11 @@
         <option value="$PROJECT_DIR$/makegrid.kv" />
         <option value="$PROJECT_DIR$/test2.py" />
         <option value="$PROJECT_DIR$/test3.kv" />
-        <option value="$PROJECT_DIR$/main.kv" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/test3.py" />
         <option value="$PROJECT_DIR$/test.kv" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/main.kv" />
       </list>
     </option>
   </component>
@@ -167,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="customwidget.kv" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -262,8 +263,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test" />
-        <item index="1" class="java.lang.String" itemvalue="Python.main" />
+        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
         <item index="2" class="java.lang.String" itemvalue="Python.test3" />
         <item index="3" class="java.lang.String" itemvalue="Python.test2" />
         <item index="4" class="java.lang.String" itemvalue="Python.customwidget.kv" />
@@ -395,23 +396,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="116" column="31" lean-forward="false" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.kv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="27" column="24" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        <state relative-caret-position="34">
+          <caret line="95" column="31" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="279" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.kv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="30" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.kv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
@@ -419,10 +420,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="121" column="25" lean-forward="true" selection-start-line="121" selection-start-column="25" selection-end-line="121" selection-end-column="25" />
+        <state relative-caret-position="144">
+          <caret line="264" column="27" lean-forward="true" selection-start-line="264" selection-start-column="27" selection-end-line="264" selection-end-column="27" />
           <folding />
         </state>
       </provider>

@@ -55,8 +55,9 @@ colour = [0]
 
 moves = [[1,0],[0,1],[-1,0],[0,-1]]
 algo = [0]
-reset = [0]
+running = [0]
 queue = []
+stack = []
 
 #change node colour
 def paint(x,y,self):
@@ -73,18 +74,49 @@ def paint(x,y,self):
     return
 
 
-def runPath(self,stack,*largs):
+def runPath(self,*largs):
     if stack==[]:
         return
     y,x = stack.pop(-1)
-    with self.canvas:
-        Color(0,0,1,1)
-        Rectangle(pos=(grid[y][x].x, grid[y][x].y), size=(grid[y][x].hori, grid[y][x].vert))
-    Clock.schedule_once(partial(runPath,self,stack),1.0/60.0)
+    if grid[y][x].col != 1:
+        with self.canvas:
+            Color(0,0,1,1)
+            Rectangle(pos=(grid[y][x].x, grid[y][x].y), size=(grid[y][x].hori, grid[y][x].vert))
+    Clock.schedule_once(partial(runPath,self),1.0/60.0)
 
 
-def bfs(self):
-    queue = []
+def bfsUpdate(self,*largs):
+    for i in range(len(queue)):
+        y,x = queue.pop(0)
+        if grid[y][x].col==2:
+            while queue:
+                queue.pop(-1)
+            while stack:
+                stack.pop(-1)
+            while backtrack[y][x] != [-1, -1]:
+                stack.append(backtrack[y][x])
+                y, x = backtrack[y][x]
+            Clock.schedule_once(partial(runPath, self), 1.0 / 60.0)
+            return
+        if grid[y][x].col != 1:
+            with self.canvas:
+                Color(0,1,1,1)
+                Rectangle(pos=(grid[y][x].x, grid[y][x].y), size=(grid[y][x].hori, grid[y][x].vert))
+        for j in moves:
+            ny,nx = y+j[0],x+j[1]
+            if ny < 0 or ny >= height or nx < 0 or nx >= width:
+                continue
+            if grid[ny][nx].col == 0 or checked[ny][nx]:
+                continue
+            checked[ny][nx] = 1
+            backtrack[ny][nx] = [y,x]
+            queue.append([ny,nx])
+    Clock.schedule_once(partial(bfsUpdate,self),1.0/60.0)
+
+
+def bfs(self,*largs):
+    while queue:
+        queue.pop(-1)
     height,width = len(grid),len(grid[0])
     for i in range(height):
         for j in range(width):
@@ -92,42 +124,23 @@ def bfs(self):
             if grid[i][j].col==1:
                 queue.append([i,j])
                 checked[i][j] = 1
-    while queue:
-        for j in range(len(queue)):
-            y,x = queue.pop(0)
-            for i in moves:
-                ny,nx = y+i[0],x+i[1]
-                if ny < 0 or ny >= height or nx < 0 or nx >= width:
-                    continue
-                if grid[ny][nx].col==0 or checked[ny][nx]:
-                    continue
-                checked[ny][nx] = 1
-                if grid[ny][nx].col==2:
-                    return
-                with self.canvas:
-                    Color(0,0,1,1)
-                    Rectangle(pos=(grid[ny][nx].x, grid[ny][nx].y), size=(grid[ny][nx].hori, grid[ny][nx].vert))
-                queue.append([ny,nx])
+    if queue:
+        Clock.schedule_once(partial(bfsUpdate,self),1.0/60.0)
 
 
 def dfsUpdate(self,*largs):
-    if not queue:
-        return
-    if reset[0]:
-        reset[0] = 0
-        while queue:
-            queue.pop(-1)
+    if not queue or not running[0]:
         return
     y,x = queue.pop(-1)
     if grid[y][x].col==2:
         while queue:
             queue.pop(-1)
-        return            #TEMPORARY TO REMOVE LATER
-        stack = []
+        while stack:
+            stack.pop(-1)
         while backtrack[y][x] != [-1,-1]:
             stack.append(backtrack[y][x])
             y,x = backtrack[y][x]
-        Clock.schedule_once(partial(runPath,self,stack),1.0/60.0)
+        Clock.schedule_once(partial(runPath,self),1.0/60.0)
         return
     with self.canvas:
         Color(0,1,1,1)
@@ -146,7 +159,8 @@ def dfsUpdate(self,*largs):
 
 
 def dfs(self,*largs):
-    reset[0] = 0
+    if not running[0]:
+        return
     while queue:
         queue.pop(-1)
     height,width = len(grid),len(grid[0])
@@ -166,12 +180,8 @@ def dfs(self,*largs):
                         continue
                     queue.append([ny, nx])
                     checked[ny][nx] = 1
-    if queue and not reset[0]:
+    if queue:
         Clock.schedule_once(partial(dfsUpdate,self),1.0/30.0)
-    elif reset[0]:
-        while queue:
-            queue.pop(-1)
-        reset[0] = 0
 
 
 class Touch(Widget):
@@ -206,6 +216,8 @@ class ToolBar(BoxLayout):
             algo[0] = 1
 
     def randomize(self):
+        if running[0]:
+            running[0] = 0
         for i in grid:
             for j in i:
                 if randint(1,4)==1:
@@ -228,6 +240,8 @@ class ToolBar(BoxLayout):
             Rectangle(pos=(grid[a][b].x, grid[a][b].y), size=(grid[a][b].hori, grid[a][b].vert))
 
     def clear(self):
+        if running[0]:
+            running[0] = 0
         for i in grid:
             for j in i:
                 j.col = 3
@@ -236,8 +250,9 @@ class ToolBar(BoxLayout):
                     Rectangle(pos=(j.x, j.y), size=(j.hori, j.vert))
 
     def simulate(self):
+        running[0] = 1
         if algo[0]==0:
-            bfs(self.parent)
+            Clock.schedule_once(partial(bfs,self.parent),1.0/30.0)
         else:
             Clock.schedule_once(partial(dfs,self.parent),1.0/30.0)
 
