@@ -7,7 +7,11 @@ from kivy.uix.checkbox import CheckBox
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.uix.spinner import Spinner
+from kivy.clock import Clock
+import time
 
+def func(dt):
+    pass
 
 class Select(BoxLayout):
     def spinner_clicked(self,value):
