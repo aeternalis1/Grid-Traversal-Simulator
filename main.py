@@ -195,15 +195,7 @@ def dfs(self,*largs):
         for j in range(width):
             if grid[i][j].col==1:
                 checked[i][j] = 1
-                shuffle(moves)
-                for k in moves:
-                    ny, nx = i + k[0], j + k[1]
-                    if ny < 0 or ny >= height or nx < 0 or nx >= width:
-                        continue
-                    if grid[ny][nx].col == 0 or checked[ny][nx]:
-                        continue
-                    queue.append([ny, nx])
-                    checked[ny][nx] = 1
+                queue.append([i, j])
     if queue:
         dfsUpdate(self)
 
