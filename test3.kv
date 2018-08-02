@@ -1,21 +1,60 @@
 #: import Spinner kivy.uix.spinner
+#: import Slider kivy.uix.slider
 
-Select:
+ToolBar:
 
-<Select>
+<ToolBar>
     orientation: "horizontal"
     size_hint: None,None
     spacing: '5dp'
     padding: '5dp'
     pos: (0,550)
     Label:
-        text: "Currently\n placing:"
+        text: "Placing:"
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
+        width: '70dp'
     Spinner:
         text: "Wall"
         values: ["Wall","Source","Target","Blank"]
         id: spinner_id
         on_text: root.spinner_clicked(spinner_id.text)
         size_hint: None,None
-        height: '40dp'
+        height: '35dp'
+    Label:
+        text: "Algorithm:"
+        size_hint: None,None
+        height: '35dp'
+        width: '90dp'
+    Spinner:
+        text: "BFS"
+        values: ["BFS","DFS"]
+        id: spinner_id2
+        on_text: root.spinner_clicked2(spinner_id2.text)
+        size_hint: None,None
+        height: '35dp'
+    Button:
+        text: "Randomize Grid"
+        on_press: root.randomize()
+        height: '35dp'
+        size_hint: None,None
+        width: '120dp'
+    Button:
+        text: "Clear Grid"
+        on_press: root.clear()
+        height: '35dp'
+        size_hint: None,None
+        width: '100dp'
+    Button:
+        text: "Simulate!"
+        on_press: root.simulate()
+        height: '35dp'
+        size_hint: None,None
+        width: '90dp'
+    Slider:
+        min: 1
+        max: 100
+        value: 50
+        on_value: root.changeSpeed(*args)
+        size_hint: None,None
+        height: '35dp'

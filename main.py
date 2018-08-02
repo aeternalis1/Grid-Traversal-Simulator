@@ -2,11 +2,6 @@ import kivy
 kivy.require('1.10.0')
 
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.image import Image
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.config import Config
 from kivy.graphics import *
@@ -240,7 +235,6 @@ class ToolBar(BoxLayout):
             while queue:
                 queue.pop(-1)
         resetGrid(self.parent)
-        print (self.parent)
         for i in grid:
             for j in i:
                 if randint(1,4)==1:
