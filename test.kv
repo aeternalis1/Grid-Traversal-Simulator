@@ -51,10 +51,22 @@ ToolBar:
         height: '35dp'
         size_hint: None,None
         width: '90dp'
-    Slider:
-        min: 1
-        max: 100
-        value: 50
-        on_value: root.changeSpeed(*args)
+    Label:
+        text: "Speed:"
         size_hint: None,None
         height: '35dp'
+        width: '70dp'
+
+<speedSelect@Slider>
+    min: 1
+    max: 100
+    on_value: root.changeSpeed(*args)
+    size_hint: None,None
+    height: '35dp'
+    pos: (790,555)
+    lbl: slider_label
+    Label:
+        id: slider_label
+        text: '50'
+        size_hint: None,None
+        pos: (735,522)

@@ -1,4 +1,5 @@
 #: import Spinner kivy.uix.spinner
+#: import Slider kivy.uix.slider
 
 ToolBar:
 
@@ -9,9 +10,10 @@ ToolBar:
     padding: '5dp'
     pos: (0,550)
     Label:
-        text: "Currently\nplacing:"
+        text: "Placing:"
         size_hint: None,None
         height: '35dp'
+        width: '70dp'
     Spinner:
         text: "Wall"
         values: ["Wall","Source","Target","Blank"]
@@ -20,9 +22,10 @@ ToolBar:
         size_hint: None,None
         height: '35dp'
     Label:
-        text: "Current\nalgorithm:"
+        text: "Algorithm:"
         size_hint: None,None
         height: '35dp'
+        width: '90dp'
     Spinner:
         text: "BFS"
         values: ["BFS","DFS"]
@@ -48,3 +51,22 @@ ToolBar:
         height: '35dp'
         size_hint: None,None
         width: '90dp'
+    Label:
+        text: "Speed:"
+        size_hint: None,None
+        height: '35dp'
+        width: '70dp'
+
+<speedSelect@Slider>
+    min: 1
+    max: 100
+    on_value: root.changeSpeed(*args)
+    size_hint: None,None
+    height: '35dp'
+    pos: (790,555)
+    lbl: slider_label
+    Label:
+        id: slider_label
+        text: '50'
+        size_hint: None,None
+        pos: (735,522)
