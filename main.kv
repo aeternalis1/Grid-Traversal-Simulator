@@ -21,6 +21,7 @@ ToolBar:
         on_text: root.spinner_clicked(spinner_id.text)
         size_hint: None,None
         height: '35dp'
+        sync_height: True
     Label:
         text: "Algorithm:"
         size_hint: None,None
@@ -33,6 +34,7 @@ ToolBar:
         on_text: root.spinner_clicked2(spinner_id2.text)
         size_hint: None,None
         height: '35dp'
+        sync_height: True
     Button:
         text: "Randomize Grid"
         on_press: root.randomize()

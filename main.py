@@ -294,6 +294,7 @@ class ToolBar(BoxLayout):
 
 class MainApp(App):
     def build(self):
+        self.title = "Grid Traversal Simulator"
         parent = Widget()
         layout = Touch()
         tools = ToolBar()
