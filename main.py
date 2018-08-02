@@ -49,16 +49,21 @@ for i in range(height):
 
 colours = [(0,0,0,1),(0,1,0,1),(1,0,0,1),(1,1,1,1)]
 colour = [0]
+walls = ["Wall","Source","Target","Blank"]
+
 
 moves = [[1,0],[0,1],[-1,0],[0,-1]]
 algo = [0]
+algos = ["BFS","DFS"]
 running = [0]
-#queue = [0 for x in range(width*height)]
+speed = [50]
+
+
 queue = []
 stack = [0 for x in range(width*height)]
 queueInd = [0,0]
 stackInd = [0]
-speed = [50]
+
 
 #change node colour
 def paint(x,y,self):
@@ -86,7 +91,10 @@ def resetGrid(self):
                 Rectangle(pos=(j.x,j.y),size=(j.hori,j.vert))
     self.clear_widgets()
     self.add_widget(Touch())
-    self.add_widget(ToolBar())
+    tools = ToolBar()
+    tools.ids.spinner_id.text = walls[colour[0]]
+    tools.ids.spinner_id2.text = algos[algo[0]]
+    self.add_widget(tools)
     select = speedSelect(value=speed[0])
     select.update()
     self.add_widget(select)
