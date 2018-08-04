@@ -115,6 +115,8 @@ def runPath(self,*largs):
 
 
 def bfsUpdate(self,*largs):
+    if not queue or not running[0] or running[0]==2:
+        return
     for i in range(len(queue)):
         y,x = queue.pop(0)
         if grid[y][x].col==2:
@@ -144,6 +146,8 @@ def bfsUpdate(self,*largs):
 
 
 def bfs(self,*largs):
+    if not running[0]:
+        return
     while queue:
         queue.pop(-1)
     height,width = len(grid),len(grid[0])
@@ -159,7 +163,7 @@ def bfs(self,*largs):
 
 
 def dfsUpdate(self,*largs):
-    if not queue or not running[0]:
+    if not queue or not running[0] or running[0]==1:
         return
     y,x = queue.pop(-1)
     if grid[y][x].col==2:
@@ -286,8 +290,10 @@ class ToolBar(BoxLayout):
         stackInd[0] = -1
         running[0] = 1
         if algo[0]==0:
+            running[0] = 1
             bfs(self.parent)
         else:
+            running[0] = 2
             dfs(self.parent)
         resetGrid(self.parent)
 
